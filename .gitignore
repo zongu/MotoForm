@@ -3,3 +3,14 @@
 ################################################################################
 
 /.vs/MotoForm/v15
+/MotoForm/.vs/MotoForm/v15
+/MotoForm/bin/Debug
+/MotoForm/obj/Debug
+/MotoForm/packages
+/MotoForm.Domain/bin/Debug
+/MotoForm.Domain/obj/Debug
+/MotoForm.Persistent/bin/Debug
+/MotoForm.Persistent/obj/Debug
+/MotoForm.Persistent.Tests/bin/Debug
+/MotoForm.Persistent.Tests/obj/Debug
+/packages
