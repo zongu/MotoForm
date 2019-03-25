@@ -7,6 +7,8 @@ namespace MotoForm.Domain.Repository
 
     public interface IRepairRecordRepository
     {
+        Tuple<Exception, int> GetTodayRepairCount();
+
         Tuple<Exception> Insert(RepairRecord record);
 
         Tuple<Exception, IEnumerable<RepairRecord>> QueryByDateTime(DateTime startDateTime, DateTime endDateTime);

@@ -174,5 +174,41 @@ namespace Domain.Persistent.Tests
             var updateResult = this.repo.Update(updateData);
             Assert.IsNull(updateResult.Item1);
         }
+
+        [TestMethod]
+        public void GetTodayRepairCountTests()
+        {
+            Enumerable.Range(1, 15).Select(index =>
+               new RepairRecord()
+               {
+                   MotoId = index,
+                   Principal = "王大槌",
+                   LastMaintainceMileage = 30,
+                   Memo = $"{index}Memo -",
+                   ReceivableAmount = index * 1000,
+                   ActualHarvestAmount = index * 1000,
+                   CreateDateTimeStamp = index > 10 ? DateTime.Now.Ticks : DateTime.Now.AddDays(-1).Ticks
+               }
+           ).ToList().ForEach(record =>
+           {
+               record.GenerateContainString(new List<RepairItemDetail>()
+               {
+                    new RepairItemDetail()
+                    {
+                        Category = RepairCategory.Battery,
+                        ItemName = "ItemName -",
+                        Price = record.MotoId * 1000,
+                        Qty = 1
+                    }
+               });
+
+               var insertResult = this.repo.Insert(record);
+               Assert.IsNull(insertResult.Item1);
+           });
+
+            var todayCount = this.repo.GetTodayRepairCount();
+            Assert.IsNull(todayCount.Item1);
+            Assert.AreEqual(5, todayCount.Item2);
+        }
     }
 }

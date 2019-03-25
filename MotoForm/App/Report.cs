@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MotoForm.App;
 
-namespace MotoForm
+namespace MotoForm.App
 {
-    public partial class BaseForm : Form
+    public partial class Report : Form
     {
-        public BaseForm()
+        public Report()
         {
             InitializeComponent();
         }

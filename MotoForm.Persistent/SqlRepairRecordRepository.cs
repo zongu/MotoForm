@@ -18,6 +18,33 @@ namespace MotoForm.Persistent
             this.connectionString = $"Data source={filePath}";
         }
 
+        public Tuple<Exception, int> GetTodayRepairCount()
+        {
+            try
+            {
+                var startDateTimeStamp = DateTime.Parse($"{DateTime.Now.ToString("yyyy-MM-dd")} 00:00:00").Ticks;
+                var endDateTimeStamp = DateTime.Parse($"{DateTime.Now.ToString("yyyy-MM-dd")} 23:59:59").Ticks;
+
+                string sqlStr = @"SELECT COUNT(1) FROM RepairRecord WHERE CreateDateTimeStamp BETWEEN @StartDateTimeStamp AND @EndDateTimeStamp";
+                using (var cn = new SQLiteConnection(this.connectionString))
+                {
+                    var result = cn.QueryFirstOrDefault<int>(
+                        sqlStr,
+                        new
+                        {
+                            StartDateTimeStamp = startDateTimeStamp,
+                            EndDateTimeStamp = endDateTimeStamp
+                        });
+
+                    return Tuple.Create<Exception, int>(null, result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Tuple.Create<Exception, int>(ex, 0);
+            }
+        }
+
         public Tuple<Exception> Insert(RepairRecord record)
         {
             try

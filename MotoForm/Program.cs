@@ -18,7 +18,7 @@ namespace MotoForm
             Applibs.AutoFacConfig.RegisterContainer();
             if (new Login().ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new BaseForm());
+                Application.Run(new LobbyForm());
             }
         }
     }

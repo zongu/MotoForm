@@ -1,7 +1,9 @@
 ﻿
 namespace MotoForm.Applibs
 {
+    using System.Windows.Forms;
     using Autofac;
+    using MotoForm.App;
     using MotoForm.Domain.Repository;
     using MotoForm.Persistent;
 
@@ -28,6 +30,15 @@ namespace MotoForm.Applibs
             builder.RegisterType<SqlRepairRecordRepository>()
                .WithParameter("filePath", ConfigHelper.FilePath)
                .As<IRepairRecordRepository>();
+
+            builder.RegisterType<Sale>()
+               .Keyed<Form>(nameof(Sale));
+
+            builder.RegisterType<ItemMaintaince>()
+               .Keyed<Form>(nameof(ItemMaintaince));
+
+            builder.RegisterType<Report>()
+               .Keyed<Form>(nameof(Report));
 
             Container = builder.Build();
         }

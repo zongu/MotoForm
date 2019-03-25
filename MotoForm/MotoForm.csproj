@@ -53,23 +53,53 @@
   <ItemGroup>
     <Compile Include="Applibs\AutoFacConfig.cs" />
     <Compile Include="Applibs\ConfigHelper.cs" />
+    <Compile Include="App\ItemMaintaince.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\ItemMaintaince.Designer.cs">
+      <DependentUpon>ItemMaintaince.cs</DependentUpon>
+    </Compile>
     <Compile Include="App\Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="App\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseForm.cs">
+    <Compile Include="App\Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseForm.Designer.cs">
-      <DependentUpon>BaseForm.cs</DependentUpon>
+    <Compile Include="App\Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="App\Sale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\Sale.Designer.cs">
+      <DependentUpon>Sale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LobbyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LobbyForm.Designer.cs">
+      <DependentUpon>LobbyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="App\ItemMaintaince.resx">
+      <DependentUpon>ItemMaintaince.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="App\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\Sale.resx">
+      <DependentUpon>Sale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LobbyForm.resx">
+      <DependentUpon>LobbyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

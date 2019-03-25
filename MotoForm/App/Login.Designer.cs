@@ -30,9 +30,9 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.TbMsg = new System.Windows.Forms.TextBox();
-            this.TbPwd = new System.Windows.Forms.TextBox();
-            this.BtnLogin = new System.Windows.Forms.Button();
             this.BtnUpdateDb = new System.Windows.Forms.Button();
+            this.BtnLogin = new System.Windows.Forms.Button();
+            this.TbPwd = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,25 +73,6 @@
             this.TbMsg.Size = new System.Drawing.Size(211, 109);
             this.TbMsg.TabIndex = 0;
             // 
-            // TbPwd
-            // 
-            this.TbPwd.Location = new System.Drawing.Point(7, 0);
-            this.TbPwd.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.TbPwd.Name = "TbPwd";
-            this.TbPwd.Size = new System.Drawing.Size(197, 36);
-            this.TbPwd.TabIndex = 0;
-            // 
-            // BtnLogin
-            // 
-            this.BtnLogin.Location = new System.Drawing.Point(7, 48);
-            this.BtnLogin.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.BtnLogin.Name = "BtnLogin";
-            this.BtnLogin.Size = new System.Drawing.Size(197, 58);
-            this.BtnLogin.TabIndex = 1;
-            this.BtnLogin.Text = "登入";
-            this.BtnLogin.UseVisualStyleBackColor = true;
-            this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
-            // 
             // BtnUpdateDb
             // 
             this.BtnUpdateDb.Location = new System.Drawing.Point(7, 118);
@@ -102,6 +83,25 @@
             this.BtnUpdateDb.Text = "更新資料庫";
             this.BtnUpdateDb.UseVisualStyleBackColor = true;
             this.BtnUpdateDb.Click += new System.EventHandler(this.BtnUpdateDb_Click);
+            // 
+            // BtnLogin
+            // 
+            this.BtnLogin.Location = new System.Drawing.Point(7, 48);
+            this.BtnLogin.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.BtnLogin.Name = "BtnLogin";
+            this.BtnLogin.Size = new System.Drawing.Size(197, 58);
+            this.BtnLogin.TabIndex = 1;
+            this.BtnLogin.Text = "登             入";
+            this.BtnLogin.UseVisualStyleBackColor = true;
+            this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
+            // 
+            // TbPwd
+            // 
+            this.TbPwd.Location = new System.Drawing.Point(7, 0);
+            this.TbPwd.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.TbPwd.Name = "TbPwd";
+            this.TbPwd.Size = new System.Drawing.Size(197, 36);
+            this.TbPwd.TabIndex = 0;
             // 
             // Login
             // 
