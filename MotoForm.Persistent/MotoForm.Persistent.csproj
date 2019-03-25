@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlLiteMaintainRepository.cs" />
+    <Compile Include="SqlMotoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MotoForm.Domain\MotoForm.Domain.csproj">

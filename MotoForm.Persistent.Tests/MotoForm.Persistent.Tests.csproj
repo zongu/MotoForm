@@ -53,6 +53,7 @@
     <Compile Include="Applibs\ConfigHelper.cs" />
     <Compile Include="SqlLiteMaintainRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlMotoRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -60,7 +61,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MotoForm.Persistent\MotoForm.Persistent.csproj">
       <Project>{013d5441-4acb-4d53-b55b-c223d4d1a3b2}</Project>
-      <Name>Domain.Persistent</Name>
+      <Name>MotoForm.Persistent</Name>
     </ProjectReference>
     <ProjectReference Include="..\MotoForm.Domain\MotoForm.Domain.csproj">
       <Project>{505b71a4-ba4e-403a-82a7-4fd41264040d}</Project>

@@ -8,6 +8,7 @@ namespace MotoForm.Persistent
     using System.Linq;
     using System.Reflection;
     using Dapper;
+    using MotoForm.Domain.Model;
     using MotoForm.Domain.Repository;
 
     public class SqlLiteMaintainRepository : IMaintainRepository
@@ -99,6 +100,19 @@ namespace MotoForm.Persistent
                 {
                     columns.Add($"{prop.Name} NUMERIC");
                 }
+                else if(object.ReferenceEquals(prop.PropertyType, typeof(bool)))
+                {
+                    columns.Add($"{prop.Name} INTEGER");
+                }
+                else if (object.ReferenceEquals(prop.PropertyType, typeof(long)))
+                {
+                    columns.Add($"{prop.Name} INTEGER");
+                }
+                else if(object.ReferenceEquals(prop.PropertyType, typeof(GenderType)) 
+                    || object.ReferenceEquals(prop.PropertyType, typeof(MotoPowerSource)))
+                {
+                    columns.Add($"{prop.Name} INTEGER");
+                }
             }
 
             result += string.Join(",", columns);
@@ -127,6 +141,19 @@ namespace MotoForm.Persistent
                 else if (object.ReferenceEquals(prop.PropertyType, typeof(DateTime)))
                 {
                     result.Add($"ALTER TABLE {tableName} ADD COLUMN {prop.Name}  NUMERIC");
+                }
+                else if (object.ReferenceEquals(prop.PropertyType, typeof(bool)))
+                {
+                    result.Add($"ALTER TABLE {tableName} ADD COLUMN {prop.Name} INTEGER");
+                }
+                else if (object.ReferenceEquals(prop.PropertyType, typeof(long)))
+                {
+                    result.Add($"ALTER TABLE {tableName} ADD COLUMN {prop.Name} INTEGER");
+                }
+                else if (object.ReferenceEquals(prop.PropertyType, typeof(GenderType))
+                    || object.ReferenceEquals(prop.PropertyType, typeof(MotoPowerSource)))
+                {
+                    result.Add($"ALTER TABLE {tableName} ADD COLUMN {prop.Name} INTEGER");
                 }
             }
 
