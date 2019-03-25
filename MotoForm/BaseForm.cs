@@ -15,12 +15,6 @@ namespace MotoForm
     {
         public BaseForm()
         {
-            var login = new Login();
-            if(login.ShowDialog() != DialogResult.OK)
-            {
-                //this.
-            }
-
             InitializeComponent();
         }
     }

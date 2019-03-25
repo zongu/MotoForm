@@ -2,10 +2,8 @@
 namespace MotoForm
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
+    using MotoForm.App;
 
     static class Program
     {
@@ -17,7 +15,11 @@ namespace MotoForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BaseForm());
+            Applibs.AutoFacConfig.RegisterContainer();
+            if (new Login().ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new BaseForm());
+            }
         }
     }
 }

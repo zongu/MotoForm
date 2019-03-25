@@ -1,5 +1,5 @@
 ﻿
-namespace Domain.Persistent
+namespace MotoForm.Persistent
 {
     using System;
     using System.Collections.Generic;
