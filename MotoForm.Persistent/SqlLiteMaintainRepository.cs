@@ -32,7 +32,7 @@ namespace MotoForm.Persistent
                     SQLiteConnection.CreateFile(this.filePath);
                 }
 
-                string sqlStr = string.Empty;
+                var tables = new List<string>();
                 var columns = new List<string>();
                 foreach (var assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
                 {
@@ -43,7 +43,7 @@ namespace MotoForm.Persistent
                     {
                         foreach (var type in domainTypes)
                         {
-                            sqlStr += GenerateTableSqlString(type);
+                            tables.Add(GenerateTableSqlString(type));
                             columns.AddRange(GenerateColumnSqlString(type));
                         }
                     }
@@ -51,7 +51,11 @@ namespace MotoForm.Persistent
 
                 using (var cn = new SQLiteConnection(this.connectionString))
                 {
-                    cn.Execute(sqlStr);
+                    foreach(var table in tables)
+                    {
+                        cn.Execute(table);
+                    }
+
                     foreach(var column in columns)
                     {
                         try
@@ -109,7 +113,8 @@ namespace MotoForm.Persistent
                     columns.Add($"{prop.Name} INTEGER");
                 }
                 else if(object.ReferenceEquals(prop.PropertyType, typeof(GenderType)) 
-                    || object.ReferenceEquals(prop.PropertyType, typeof(MotoPowerSource)))
+                    || object.ReferenceEquals(prop.PropertyType, typeof(MotoPowerSource))
+                    || object.ReferenceEquals(prop.PropertyType, typeof(RepairCategory)))
                 {
                     columns.Add($"{prop.Name} INTEGER");
                 }
@@ -151,7 +156,8 @@ namespace MotoForm.Persistent
                     result.Add($"ALTER TABLE {tableName} ADD COLUMN {prop.Name} INTEGER");
                 }
                 else if (object.ReferenceEquals(prop.PropertyType, typeof(GenderType))
-                    || object.ReferenceEquals(prop.PropertyType, typeof(MotoPowerSource)))
+                    || object.ReferenceEquals(prop.PropertyType, typeof(MotoPowerSource))
+                    || object.ReferenceEquals(prop.PropertyType, typeof(RepairCategory)))
                 {
                     result.Add($"ALTER TABLE {tableName} ADD COLUMN {prop.Name} INTEGER");
                 }

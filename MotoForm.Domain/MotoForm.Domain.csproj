@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,9 +48,17 @@
     <Compile Include="Model\GenderType.cs" />
     <Compile Include="Model\Moto.cs" />
     <Compile Include="Model\MotoPowerSource.cs" />
+    <Compile Include="Model\RepairCategory.cs" />
+    <Compile Include="Model\RepairItem.cs" />
+    <Compile Include="Model\RepairItemDetail.cs" />
+    <Compile Include="Model\RepairRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IMaintainRepository.cs" />
     <Compile Include="Repository\IMotoRepository.cs" />
+    <Compile Include="Repository\IRepairItemRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -54,6 +54,7 @@
     <Compile Include="SqlLiteMaintainRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlMotoRepositoryTests.cs" />
+    <Compile Include="SqlRepairItemRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
