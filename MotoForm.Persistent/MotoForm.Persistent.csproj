@@ -61,6 +61,7 @@
     <Compile Include="SqlLiteMaintainRepository.cs" />
     <Compile Include="SqlMotoRepository.cs" />
     <Compile Include="SqlRepairItemRepository.cs" />
+    <Compile Include="SqlRepairRecordRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MotoForm.Domain\MotoForm.Domain.csproj">

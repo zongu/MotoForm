@@ -56,6 +56,7 @@
     <Compile Include="Repository\IMaintainRepository.cs" />
     <Compile Include="Repository\IMotoRepository.cs" />
     <Compile Include="Repository\IRepairItemRepository.cs" />
+    <Compile Include="Repository\IRepairRecordRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
