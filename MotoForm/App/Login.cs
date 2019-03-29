@@ -21,16 +21,15 @@ namespace MotoForm.App
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            string pwd = this.TbPwd.Text;
-            if (!Applibs.ConfigHelper.Users.Any(p => p.PWD == pwd))
-            {
-                MessageBox.Show("無此密碼!!");
-                return;
-            }
+            this.LoginProcess();
+        }
 
-            Applibs.ConfigHelper.CurrentUser = Applibs.ConfigHelper.Users.FirstOrDefault(p => p.PWD == pwd);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+        private void TbPwd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(13))
+            {
+                this.LoginProcess();
+            }
         }
 
         private void BtnUpdateDb_Click(object sender, EventArgs e)
@@ -41,6 +40,20 @@ namespace MotoForm.App
 
             var th = new Thread(UpdateDb);
             th.Start();
+        }
+
+        private void LoginProcess()
+        {
+            string pwd = this.TbPwd.Text;
+            if (!Applibs.ConfigHelper.Users.Any(p => p.PWD == pwd))
+            {
+                MessageBox.Show("無此密碼!!");
+                return;
+            }
+
+            Applibs.ConfigHelper.CurrentUser = Applibs.ConfigHelper.Users.FirstOrDefault(p => p.PWD == pwd);
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void UpdateDb()

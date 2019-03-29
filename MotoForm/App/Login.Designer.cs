@@ -102,6 +102,7 @@
             this.TbPwd.Name = "TbPwd";
             this.TbPwd.Size = new System.Drawing.Size(197, 36);
             this.TbPwd.TabIndex = 0;
+            this.TbPwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbPwd_KeyPress);
             // 
             // Login
             // 

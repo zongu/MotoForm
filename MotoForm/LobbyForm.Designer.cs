@@ -36,7 +36,7 @@
             // 
             // BtnSale
             // 
-            this.BtnSale.Location = new System.Drawing.Point(12, 46);
+            this.BtnSale.Location = new System.Drawing.Point(12, 48);
             this.BtnSale.Name = "BtnSale";
             this.BtnSale.Size = new System.Drawing.Size(245, 68);
             this.BtnSale.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // BtnItemMaintaince
             // 
-            this.BtnItemMaintaince.Location = new System.Drawing.Point(12, 120);
+            this.BtnItemMaintaince.Location = new System.Drawing.Point(10, 122);
             this.BtnItemMaintaince.Name = "BtnItemMaintaince";
             this.BtnItemMaintaince.Size = new System.Drawing.Size(245, 68);
             this.BtnItemMaintaince.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // BtnReport
             // 
-            this.BtnReport.Location = new System.Drawing.Point(12, 194);
+            this.BtnReport.Location = new System.Drawing.Point(12, 196);
             this.BtnReport.Name = "BtnReport";
             this.BtnReport.Size = new System.Drawing.Size(245, 68);
             this.BtnReport.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(269, 276);
+            this.ClientSize = new System.Drawing.Size(267, 275);
             this.Controls.Add(this.LbTotalCount);
             this.Controls.Add(this.BtnReport);
             this.Controls.Add(this.BtnItemMaintaince);

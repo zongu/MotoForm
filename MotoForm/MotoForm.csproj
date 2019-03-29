@@ -65,6 +65,12 @@
     <Compile Include="App\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="App\MotoDataListSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\MotoDataListSelect.Designer.cs">
+      <DependentUpon>MotoDataListSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="App\Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     <EmbeddedResource Include="App\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="App\MotoDataListSelect.resx">
+      <DependentUpon>MotoDataListSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="App\Report.resx">
       <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +121,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\MotoForm.Domain.Model.Moto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
