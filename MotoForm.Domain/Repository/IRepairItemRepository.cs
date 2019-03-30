@@ -7,6 +7,8 @@ namespace MotoForm.Domain.Repository
 
     public interface IRepairItemRepository
     {
+        Tuple<Exception> Disable(int repairItemId);
+
         Tuple<Exception, IEnumerable<RepairItem>> GetAll();
 
         Tuple<Exception> InsertOne(RepairItem item);

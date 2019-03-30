@@ -83,5 +83,33 @@ namespace Domain.Persistent.Tests
             Assert.IsNotNull(getResult.Item2);
             Assert.AreEqual(5, getResult.Item2.Count());
         }
+
+        [TestMethod]
+        public void DisableTests()
+        {
+            Enumerable.Range(1, 5).Select(index => new RepairItem()
+            {
+                ItemName = $"{index}ItemName -",
+                Category = RepairCategory.Battery,
+                Price = index * 1000
+            }).ToList().ForEach(item =>
+            {
+                var insertResult = this.repo.InsertOne(item);
+                Assert.IsNull(insertResult.Item1);
+            });
+
+            var getResult = this.repo.GetAll();
+            Assert.IsNull(getResult.Item1);
+            Assert.IsNotNull(getResult.Item2);
+            Assert.AreEqual(5, getResult.Item2.Count());
+
+            var disableResult = this.repo.Disable(1);
+            Assert.IsNull(disableResult.Item1);
+
+            getResult = this.repo.GetAll();
+            Assert.IsNull(getResult.Item1);
+            Assert.IsNotNull(getResult.Item2);
+            Assert.AreEqual(4, getResult.Item2.Count());
+        }
     }
 }

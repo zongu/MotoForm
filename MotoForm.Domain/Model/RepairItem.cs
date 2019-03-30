@@ -10,5 +10,7 @@ namespace MotoForm.Domain.Model
         public RepairCategory Category { get; set; }
 
         public int Price { get; set; }
+
+        public bool Enable { get; set; }
     }
 }

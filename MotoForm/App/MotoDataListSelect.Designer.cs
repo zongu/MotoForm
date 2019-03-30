@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gvMotoDataList = new System.Windows.Forms.DataGridView();
-            this.motoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.motoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.motoNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.motoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -87,10 +87,6 @@
             this.gvMotoDataList.Size = new System.Drawing.Size(384, 209);
             this.gvMotoDataList.TabIndex = 0;
             // 
-            // motoBindingSource
-            // 
-            this.motoBindingSource.DataSource = typeof(MotoForm.Domain.Model.Moto);
-            // 
             // motoIdDataGridViewTextBoxColumn
             // 
             this.motoIdDataGridViewTextBoxColumn.DataPropertyName = "MotoId";
@@ -116,6 +112,10 @@
             this.motoNumberDataGridViewTextBoxColumn.DataPropertyName = "MotoNumber";
             this.motoNumberDataGridViewTextBoxColumn.HeaderText = "車牌號碼";
             this.motoNumberDataGridViewTextBoxColumn.Name = "motoNumberDataGridViewTextBoxColumn";
+            // 
+            // motoBindingSource
+            // 
+            this.motoBindingSource.DataSource = typeof(MotoForm.Domain.Model.Moto);
             // 
             // btnOK
             // 

@@ -50,5 +50,38 @@ namespace MotoForm.Applibs
                     return "不詳";
             }
         }
+
+        public static string GetRepairCategoryDisplayName(RepairCategory category)
+        {
+            switch (category)
+            {   
+                case RepairCategory.Oil:
+                    return "油品";
+                case RepairCategory.Tire:
+                    return "輪胎";
+                case RepairCategory.Brake:
+                    return "制動";
+                case RepairCategory.Battery:
+                    return "電瓶";
+                case RepairCategory.Transmission:
+                    return "傳動";
+                case RepairCategory.FI:
+                    return "FI";
+                case RepairCategory.Light:
+                    return "燈類";
+                case RepairCategory.Electronic:
+                    return "電裝";
+                case RepairCategory.Body:
+                    return "車體";
+                case RepairCategory.Engine:
+                    return "引擎";
+                case RepairCategory.Other:
+                    return "其他";
+                case RepairCategory.Wage:
+                    return "工資";
+                default:
+                    return "NotExist";
+            }
+        }
     }
 }

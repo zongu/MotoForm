@@ -13,6 +13,7 @@ namespace MotoForm.App
     using Autofac;
     using MotoForm.Domain.Model;
     using MotoForm.Domain.Repository;
+    using MotoForm.Model;
 
     public partial class Sale : Form
     {
@@ -181,16 +182,14 @@ namespace MotoForm.App
         {
             var vm = (TextBox)sender;
             var keyCode = (int)e.KeyChar;
-            if (keyCode >= 48 && keyCode < 58)
+            if ((keyCode >= 48 && keyCode < 58) || keyCode == 8)
             {
-                vm.SelectedText = e.KeyChar.ToString();
+                e.Handled = false;
             }
             else
             {
-                vm.Text = vm.Text.Substring(0, vm.Text.Length);
+                e.Handled = true;
             }
-
-            e.Handled = true;
         }
 
         private IEnumerable<Moto> QueryMotoData()
@@ -290,12 +289,5 @@ namespace MotoForm.App
             };
         }
         #endregion
-
-        public class ComboBoxItem
-        {
-            public string Key { get; set; }
-
-            public string Value { get; set; }
-        }
     }
 }
