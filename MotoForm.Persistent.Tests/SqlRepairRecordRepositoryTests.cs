@@ -43,17 +43,6 @@ namespace Domain.Persistent.Tests
                 CreateDateTimeStamp = DateTime.Now.Ticks
             };
 
-            record.GenerateContainString(new List<RepairItemDetail>()
-            {
-                new RepairItemDetail()
-                {
-                    Category = RepairCategory.Battery,
-                    ItemName = "ItemName -",
-                    Price = 1000,
-                    Qty = 1
-                }
-            });
-
             var insertResult = this.repo.Insert(record);
             Assert.IsNull(insertResult.Item1);
         }
@@ -74,17 +63,6 @@ namespace Domain.Persistent.Tests
                 }
             ).ToList().ForEach(record =>
             {
-                record.GenerateContainString(new List<RepairItemDetail>()
-                {
-                    new RepairItemDetail()
-                    {
-                        Category = RepairCategory.Battery,
-                        ItemName = "ItemName -",
-                        Price = record.MotoId * 1000,
-                        Qty = 1
-                    }
-                });
-
                 var insertResult = this.repo.Insert(record);
                 Assert.IsNull(insertResult.Item1);
             });
@@ -114,17 +92,6 @@ namespace Domain.Persistent.Tests
                }
            ).ToList().ForEach(record =>
            {
-               record.GenerateContainString(new List<RepairItemDetail>()
-               {
-                    new RepairItemDetail()
-                    {
-                        Category = RepairCategory.Battery,
-                        ItemName = "ItemName -",
-                        Price = record.MotoId * 1000,
-                        Qty = 1
-                    }
-               });
-
                var insertResult = this.repo.Insert(record);
                Assert.IsNull(insertResult.Item1);
            });
@@ -150,17 +117,6 @@ namespace Domain.Persistent.Tests
                }
            ).ToList().ForEach(record =>
            {
-               record.GenerateContainString(new List<RepairItemDetail>()
-               {
-                    new RepairItemDetail()
-                    {
-                        Category = RepairCategory.Battery,
-                        ItemName = "ItemName -",
-                        Price = record.MotoId * 1000,
-                        Qty = 1
-                    }
-               });
-
                var insertResult = this.repo.Insert(record);
                Assert.IsNull(insertResult.Item1);
            });
@@ -191,17 +147,6 @@ namespace Domain.Persistent.Tests
                }
            ).ToList().ForEach(record =>
            {
-               record.GenerateContainString(new List<RepairItemDetail>()
-               {
-                    new RepairItemDetail()
-                    {
-                        Category = RepairCategory.Battery,
-                        ItemName = "ItemName -",
-                        Price = record.MotoId * 1000,
-                        Qty = 1
-                    }
-               });
-
                var insertResult = this.repo.Insert(record);
                Assert.IsNull(insertResult.Item1);
            });

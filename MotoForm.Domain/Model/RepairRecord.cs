@@ -23,11 +23,5 @@ namespace MotoForm.Domain.Model
         public long CreateDateTimeStamp { get; set; }
 
         public string ContainString { get; set; }
-
-        public IEnumerable<RepairItemDetail> Contains()
-            => JsonConvert.DeserializeObject<IEnumerable<RepairItemDetail>>(ContainString);
-
-        public void GenerateContainString(IEnumerable<RepairItemDetail> details)
-            => ContainString = JsonConvert.SerializeObject(details);
     }
 }

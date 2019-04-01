@@ -14,6 +14,7 @@ namespace MotoForm.App
     using MotoForm.Domain.Model;
     using MotoForm.Domain.Repository;
     using MotoForm.Model;
+    using Newtonsoft.Json;
 
     public partial class Sale : Form
     {
@@ -22,6 +23,7 @@ namespace MotoForm.App
         public Sale()
         {
             InitializeComponent();
+            #region 機車資料
             this.cbLabel.Items.AddRange(Applibs.ConfigHelper.MotoLabel.Select(p => new ComboBoxItem { Key = p, Value = p }).ToArray());
             this.cbLabel.DisplayMember = "Key";
             this.cbLabel.ValueMember = "Value";
@@ -40,6 +42,22 @@ namespace MotoForm.App
             this.cbGender.DisplayMember = "Key";
             this.cbGender.ValueMember = "Value";
             this.cbGender.SelectedIndex = 0;
+            #endregion
+
+            #region 維修資料
+            var categoryNames = Enum.GetNames(typeof(RepairCategory))
+                .Select((value, index) => new ComboBoxItem() { Key = Applibs.ConfigHelper.GetRepairCategoryDisplayName((RepairCategory)index), Value = $"{index}" });
+            this.cbRepairCategory.Items.AddRange(categoryNames.ToArray());
+            this.cbRepairCategory.DisplayMember = "Key";
+            this.cbRepairCategory.ValueMember = "Value";
+            this.cbRepairCategory.SelectedIndex = 0;
+
+            var prinpalNames = Applibs.ConfigHelper.Users.Select(p => new ComboBoxItem() { Key = p.UserName, Value = p.UserName });
+            this.cbPrincipal.Items.AddRange(prinpalNames.ToArray());
+            this.cbPrincipal.DisplayMember = "Key";
+            this.cbPrincipal.ValueMember = "Value";
+            this.cbPrincipal.SelectedIndex = 0;
+            #endregion
         }
 
         private void tabControllerChage(object sender, EventArgs e)
@@ -48,6 +66,14 @@ namespace MotoForm.App
             {
                 MessageBox.Show("請先載入機車資料!!");
                 this.tabController.SelectedIndex = 0;
+            }
+            else if (this.tabController.SelectedIndex == 1)
+            {
+                this.cbRepairCategory.SelectedIndex = 0;
+                this.dtpDateTime.Value = DateTime.Now;
+                this.bindRepairCategoryItems();
+                this.tbLastMaintainceMileage.Text = $"{this.getRepairRecords().FirstOrDefault()?.LastMaintainceMileage ?? 0}";
+                this.tbMaintainceMileage.Text = $"{this.getRepairRecords().FirstOrDefault()?.LastMaintainceMileage ?? 0}";
             }
         }
 
@@ -178,20 +204,6 @@ namespace MotoForm.App
             }
         }
 
-        private void tbExhaustVolume_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            var vm = (TextBox)sender;
-            var keyCode = (int)e.KeyChar;
-            if ((keyCode >= 48 && keyCode < 58) || keyCode == 8)
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
         private IEnumerable<Moto> QueryMotoData()
         {
             try
@@ -260,7 +272,7 @@ namespace MotoForm.App
             this.tbType.Text = this.currentMoto.Type;
             this.tbExhaustVolume.Text = $"{this.currentMoto.ExhaustVolume}";
             this.cbGender.SelectedIndex = (int)this.currentMoto.Gender;
-            this.cbLabel.SelectedIndex = Applibs.ConfigHelper.MotoLabel.Select((value, index) => new { Index = index, Value = value})
+            this.cbLabel.SelectedIndex = Applibs.ConfigHelper.MotoLabel.Select((value, index) => new { Index = index, Value = value })
                 .FirstOrDefault(p => p.Value == this.currentMoto.Label).Index;
             this.cbPowerSource.SelectedIndex = (int)this.currentMoto.PowerSource;
             this.lbMotoNumber.Text = $"車牌號碼：{this.currentMoto.MotoNumber}";
@@ -289,5 +301,218 @@ namespace MotoForm.App
             };
         }
         #endregion
+
+        #region 維修資料
+        private void gvCellContentClice(object sender, DataGridViewCellEventArgs e)
+        {
+            var gvCloumn = ((DataGridView)sender).Columns[e.ColumnIndex];
+            if (e.RowIndex >= 0 && gvCloumn is DataGridViewButtonColumn)
+            {
+                var gvRow = ((DataGridView)sender).Rows[e.RowIndex];
+                if (!int.TryParse(gvRow.Cells["Qty"].Value.ToString(), out var qty))
+                {
+                    qty = 0;
+                }
+
+                if (gvCloumn.Name == "btnAdd")
+                {
+                    qty++;
+                }
+                else if (gvCloumn.Name == "btnSub" && qty > 0)
+                {
+                    qty--;
+                }
+
+                gvRow.Cells["Qty"].Value = qty;
+            }
+        }
+
+        private void cbRepairCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.bindRepairCategoryItems();
+        }
+
+        private void btnChoice_Click(object sender, EventArgs e)
+        {
+            this.bindRepairItemsFromItemChoice();
+        }
+
+        private void gvSaleRepairItem_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            var saleItems = new List<CustomRepairItem>();
+            foreach (DataGridViewRow row in this.gvSaleRepairItem.Rows)
+            {
+                saleItems.Add(new CustomRepairItem()
+                {
+                    RepairItemId = Convert.ToInt32(row.Cells["SaleRepairItemId"].Value),
+                    ItemName = row.Cells["SaleItemName"].Value.ToString(),
+                    Category = (RepairCategory)Convert.ToInt32(row.Cells["SaleCategory"].Value),
+                    Price = Convert.ToInt32(row.Cells["SalePrice"].Value),
+                    CategoryDisplayName = row.Cells["SaleCategoryDisplayName"].Value.ToString(),
+                    Qty = Convert.ToInt32(row.Cells["SaleQty"].Value)
+                });
+            }
+
+            this.tbReceivable.Text = $"{saleItems.Sum(p => p.Qty * p.Price)}";
+            this.tbActualHarvest.Text = $"{saleItems.Sum(p => p.Qty * p.Price)}";
+        }
+
+        private void btnSaveRecord_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("確定儲存資料!?", "Info", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                var saleItems = new List<CustomRepairItem>();
+                foreach (DataGridViewRow row in this.gvSaleRepairItem.Rows)
+                {
+                    saleItems.Add(new CustomRepairItem()
+                    {
+                        RepairItemId = Convert.ToInt32(row.Cells["SaleRepairItemId"].Value),
+                        ItemName = row.Cells["SaleItemName"].Value.ToString(),
+                        Category = (RepairCategory)Convert.ToInt32(row.Cells["SaleCategory"].Value),
+                        Price = Convert.ToInt32(row.Cells["SalePrice"].Value),
+                        CategoryDisplayName = row.Cells["SaleCategoryDisplayName"].Value.ToString(),
+                        Qty = Convert.ToInt32(row.Cells["SaleQty"].Value)
+                    });
+                }
+
+                var record = new RepairRecord()
+                {
+                    MotoId = this.currentMoto.MotoId,
+                    Principal = ((ComboBoxItem)this.cbPowerSource.SelectedItem).Value,
+                    LastMaintainceMileage = long.TryParse(this.tbMaintainceMileage.Text, out var mileage) ? mileage : 0,
+                    Memo = this.tbMemo.Text,
+                    ReceivableAmount = int.TryParse(this.tbReceivable.Text, out var receivable) ? receivable : 0,
+                    ActualHarvestAmount = int.TryParse(this.tbActualHarvest.Text, out var actualHarvest) ? actualHarvest : 0,
+                    CreateDateTimeStamp = this.dtpDateTime.Value.Ticks,
+                    ContainString = JsonConvert.SerializeObject(saleItems)
+                };
+
+                using (var scope = Applibs.AutoFacConfig.Container.BeginLifetimeScope())
+                {
+                    var repo = scope.Resolve<IRepairRecordRepository>();
+                    var insertResult = repo.Insert(record);
+                    if(insertResult.Item1 != null)
+                    {
+                        MessageBox.Show(insertResult.Item1.Message);
+                        return;
+                    }
+
+                    MessageBox.Show("儲存成功!!");
+                    this.cbRepairCategory.SelectedIndex = 0;
+                    this.dtpDateTime.Value = DateTime.Now;
+                    this.bindRepairCategoryItems();
+                    this.tbReceivable.Text = string.Empty;
+                    this.tbActualHarvest.Text = string.Empty;
+                    this.tbMemo.Text = string.Empty;
+                    this.gvSaleRepairItem.DataSource = new BindingSource(new List<CustomRepairItem>(), null);
+                    this.tbLastMaintainceMileage.Text = $"{this.getRepairRecords().FirstOrDefault()?.LastMaintainceMileage ?? 0}";
+                }
+            }
+        }
+
+        private void bindRepairCategoryItems()
+        {
+            var choiceCategory = (RepairCategory)Convert.ToInt32(((ComboBoxItem)this.cbRepairCategory.SelectedItem).Value);
+            using (var scope = Applibs.AutoFacConfig.Container.BeginLifetimeScope())
+            {
+                var repo = scope.Resolve<IRepairItemRepository>();
+                var queryResult = repo.GetAll();
+                if (queryResult.Item1 != null)
+                {
+                    MessageBox.Show(queryResult.Item1.Message);
+                    return;
+                }
+
+                var items = queryResult.Item2.Where(p => p.Category == choiceCategory)
+                    .Select(p => new CustomRepairItem()
+                    {
+                        RepairItemId = p.RepairItemId,
+                        ItemName = p.ItemName,
+                        Category = p.Category,
+                        Price = p.Price,
+                        Enable = p.Enable,
+                        CategoryDisplayName = Applibs.ConfigHelper.GetRepairCategoryDisplayName(p.Category),
+                        Qty = 0
+                    });
+
+                this.gvRepairChoice.DataSource = new BindingSource(items, null);
+            }
+        }
+
+        private void bindRepairItemsFromItemChoice()
+        {
+            var choiceItems = new List<CustomRepairItem>();
+            foreach (DataGridViewRow row in this.gvSaleRepairItem.Rows)
+            {
+                choiceItems.Add(new CustomRepairItem()
+                {
+                    RepairItemId = Convert.ToInt32(row.Cells["SaleRepairItemId"].Value),
+                    ItemName = row.Cells["SaleItemName"].Value.ToString(),
+                    Category = (RepairCategory)Convert.ToInt32(row.Cells["SaleCategory"].Value),
+                    Price = Convert.ToInt32(row.Cells["SalePrice"].Value),
+                    CategoryDisplayName = row.Cells["SaleCategoryDisplayName"].Value.ToString(),
+                    Qty = Convert.ToInt32(row.Cells["SaleQty"].Value)
+                });
+            }
+
+            foreach (DataGridViewRow row in this.gvRepairChoice.Rows)
+            {
+                if (int.TryParse(row.Cells["Qty"].Value.ToString(), out var qty) && qty > 0)
+                {
+                    choiceItems.Add(new CustomRepairItem()
+                    {
+                        RepairItemId = Convert.ToInt32(row.Cells["RepairItemId"].Value),
+                        ItemName = row.Cells["ItemName"].Value.ToString(),
+                        Category = (RepairCategory)Convert.ToInt32(row.Cells["Category"].Value),
+                        Price = Convert.ToInt32(row.Cells["Price"].Value),
+                        CategoryDisplayName = row.Cells["CategoryDisplayName"].Value.ToString(),
+                        Qty = Convert.ToInt32(row.Cells["Qty"].Value)
+                    });
+                }
+            }
+
+            this.tbReceivable.Text = $"{choiceItems.Sum(p => p.Qty * p.Price)}";
+            this.tbActualHarvest.Text = $"{choiceItems.Sum(p => p.Qty * p.Price)}";
+            this.gvSaleRepairItem.DataSource = new BindingSource(choiceItems, null);
+        }
+        #endregion
+
+
+        private void tbNumberKeyPress(object sender, KeyPressEventArgs e)
+        {
+            var vm = (TextBox)sender;
+            var keyCode = (int)e.KeyChar;
+            if ((keyCode >= 48 && keyCode < 58) || keyCode == 8)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private IEnumerable<RepairRecord> getRepairRecords()
+        {
+            if (this.currentMoto == null)
+            {
+                return new List<RepairRecord>();
+            }
+
+            using (var scope = Applibs.AutoFacConfig.Container.BeginLifetimeScope())
+            {
+                var repo = scope.Resolve<IRepairRecordRepository>();
+                var queryResult = repo.QueryByMotoId(this.currentMoto.MotoId);
+                if (queryResult.Item1 != null)
+                {
+                    MessageBox.Show(queryResult.Item1.Message);
+                    return new List<RepairRecord>();
+                }
+
+                return queryResult.Item2;
+            }
+        }
+
+        
     }
 }
