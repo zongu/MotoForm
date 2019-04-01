@@ -68,6 +68,12 @@
     <Compile Include="App\EditRepairItem.Designer.cs">
       <DependentUpon>EditRepairItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="App\EditRepairRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="App\EditRepairRecord.Designer.cs">
+      <DependentUpon>EditRepairRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="App\ItemMaintaince.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,7 @@
     </Compile>
     <Compile Include="Model\ComboBoxItem.cs" />
     <Compile Include="Model\CustomRepairItem.cs" />
+    <Compile Include="Model\CustomRepairRecord.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="App\EditRepairItem.resx">
       <DependentUpon>EditRepairItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App\EditRepairRecord.resx">
+      <DependentUpon>EditRepairRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App\ItemMaintaince.resx">
       <DependentUpon>ItemMaintaince.cs</DependentUpon>
@@ -145,7 +155,9 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MotoForm.Domain.Model.Moto.datasource" />
+    <None Include="Properties\DataSources\MotoForm.Domain.Model.RepairRecord.datasource" />
     <None Include="Properties\DataSources\MotoForm.Model.CustomRepairItem.datasource" />
+    <None Include="Properties\DataSources\MotoForm.Model.CustomRepairRecord.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

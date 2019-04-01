@@ -75,6 +75,16 @@ namespace MotoForm.App
                 this.tbLastMaintainceMileage.Text = $"{this.getRepairRecords().FirstOrDefault()?.LastMaintainceMileage ?? 0}";
                 this.tbMaintainceMileage.Text = $"{this.getRepairRecords().FirstOrDefault()?.LastMaintainceMileage ?? 0}";
             }
+            else if(this.tabController.SelectedIndex == 2)
+            {
+                var record = this.getRepairRecords();
+                if(record.Count() > 0)
+                {
+                    this.gvRepairReCords.DataSource = new BindingSource(record, null);
+                    this.gvRepairReCords.Rows[0].Selected = true;
+                    this.displayRepairItem();
+                }
+            }
         }
 
         #region 機車資料
@@ -378,7 +388,7 @@ namespace MotoForm.App
                 var record = new RepairRecord()
                 {
                     MotoId = this.currentMoto.MotoId,
-                    Principal = ((ComboBoxItem)this.cbPowerSource.SelectedItem).Value,
+                    Principal = ((ComboBoxItem)this.cbPrincipal.SelectedItem).Value,
                     LastMaintainceMileage = long.TryParse(this.tbMaintainceMileage.Text, out var mileage) ? mileage : 0,
                     Memo = this.tbMemo.Text,
                     ReceivableAmount = int.TryParse(this.tbReceivable.Text, out var receivable) ? receivable : 0,
@@ -477,6 +487,60 @@ namespace MotoForm.App
         }
         #endregion
 
+        #region 維修紀錄
+        private void gvRepairReCords_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            this.displayRepairItem();
+        }
+
+        private void btnEditRepairItem_Click(object sender, EventArgs e)
+        {
+            if (this.gvRepairReCords.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            var selectRowCells = this.gvRepairReCords.SelectedRows[0].Cells;
+            var record = new CustomRepairRecord()
+            {
+                RepairRecordId = Convert.ToInt32(selectRowCells["RepairRecordId"].Value),
+                MotoId = Convert.ToInt32(selectRowCells["MotoId"].Value),
+                Principal = selectRowCells["Principal"].Value.ToString(),
+                LastMaintainceMileage = Convert.ToInt64(selectRowCells["LastMaintainceMileage"].Value),
+                Memo = selectRowCells["Memo"].Value.ToString(),
+                ReceivableAmount = Convert.ToInt32(selectRowCells["ReceivableAmount"].Value),
+                ActualHarvestAmount = Convert.ToInt32(selectRowCells["ActualHarvestAmount"].Value),
+                CreateDateTimeStamp = Convert.ToInt64(selectRowCells["CreateDateTimeStamp"].Value),
+                ContainString = selectRowCells["ContainString"].Value.ToString(),
+                DateTimeString = selectRowCells["DateTimeString"].Value.ToString()
+            };
+
+            if(new EditRepairRecord(record).ShowDialog() == DialogResult.OK)
+            {
+                var records = this.getRepairRecords();
+                if (records.Count() > 0)
+                {
+                    this.gvRepairReCords.DataSource = new BindingSource(records, null);
+                    this.gvRepairReCords.Rows[0].Selected = true;
+                    this.displayRepairItem();
+                }
+            }
+        }
+
+        private void displayRepairItem()
+        {
+            if(this.gvRepairReCords.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            var containString = this.gvRepairReCords.SelectedRows[0].Cells["ContainString"].Value.ToString();
+            var repairItems = JsonConvert.DeserializeObject<IEnumerable<CustomRepairItem>>(containString);
+            var repairItemFormat = repairItems.Select(p => $"類別:{p.CategoryDisplayName}, 項目:{p.ItemName}, 數量:{p.Qty}, 價錢:{p.Price}");
+            this.tbRepairItemDisplay.Text = string.Join("\r\n", repairItemFormat);
+        }
+        #endregion
+
 
         private void tbNumberKeyPress(object sender, KeyPressEventArgs e)
         {
@@ -492,11 +556,11 @@ namespace MotoForm.App
             }
         }
 
-        private IEnumerable<RepairRecord> getRepairRecords()
+        private IEnumerable<CustomRepairRecord> getRepairRecords()
         {
             if (this.currentMoto == null)
             {
-                return new List<RepairRecord>();
+                return new List<CustomRepairRecord>();
             }
 
             using (var scope = Applibs.AutoFacConfig.Container.BeginLifetimeScope())
@@ -506,10 +570,22 @@ namespace MotoForm.App
                 if (queryResult.Item1 != null)
                 {
                     MessageBox.Show(queryResult.Item1.Message);
-                    return new List<RepairRecord>();
+                    return new List<CustomRepairRecord>();
                 }
 
-                return queryResult.Item2;
+                return queryResult.Item2.Select(p => new CustomRepairRecord()
+                {
+                    RepairRecordId = p.RepairRecordId,
+                    MotoId = p.MotoId,
+                    Principal = p.Principal,
+                    LastMaintainceMileage = p.LastMaintainceMileage,
+                    Memo = p.Memo,
+                    ReceivableAmount = p.ReceivableAmount,
+                    ActualHarvestAmount = p.ActualHarvestAmount,
+                    CreateDateTimeStamp = p.CreateDateTimeStamp,
+                    ContainString = p.ContainString,
+                    DateTimeString = new DateTime(p.CreateDateTimeStamp).ToString("yyyy-MM-dd hh:mm:ss")
+                });
             }
         }
 
