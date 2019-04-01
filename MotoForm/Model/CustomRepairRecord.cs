@@ -1,12 +1,13 @@
 ﻿
 namespace MotoForm.Model
 {
-    using System.Collections.Generic;
+    using System;
     using MotoForm.Domain.Model;
-    using Newtonsoft.Json;
 
     public class CustomRepairRecord: RepairRecord
     {
         public string DateTimeString { get; set; }
+
+        public DateTime CreateDateTime { get; set; }
     }
 }

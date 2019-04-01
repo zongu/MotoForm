@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabController = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -85,8 +85,15 @@
             this.btnChoice = new System.Windows.Forms.Button();
             this.cbRepairCategory = new System.Windows.Forms.ComboBox();
             this.gvRepairChoice = new System.Windows.Forms.DataGridView();
+            this.CategoryDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnSub = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.RepairItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customRepairItemBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -94,21 +101,6 @@
             this.tbReceivable = new System.Windows.Forms.TextBox();
             this.btnSaveRecord = new System.Windows.Forms.Button();
             this.gvSaleRepairItem = new System.Windows.Forms.DataGridView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.lbMotoNumber = new System.Windows.Forms.Label();
-            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
-            this.gvRepairReCords = new System.Windows.Forms.DataGridView();
-            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
-            this.tbRepairItemDisplay = new System.Windows.Forms.TextBox();
-            this.btnEditRepairItem = new System.Windows.Forms.Button();
-            this.CategoryDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RepairItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customRepairItemBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.SaleRepairItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaleCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaleCategoryDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,6 +108,9 @@
             this.SaleQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customRepairItemBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this.gvRepairReCords = new System.Windows.Forms.DataGridView();
             this.RepairRecordId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MotoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreateDateTimeStamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -127,6 +122,11 @@
             this.ReceivableAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActualHarvestAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customRepairRecordBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
+            this.tbRepairItemDisplay = new System.Windows.Forms.TextBox();
+            this.btnEditRepairItem = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lbMotoNumber = new System.Windows.Forms.Label();
             this.repairRecordBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customRepairItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customRepairItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -147,28 +147,28 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvRepairChoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvSaleRepairItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource4)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
             this.splitContainer6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvRepairReCords)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customRepairRecordBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
             this.splitContainer7.Panel1.SuspendLayout();
             this.splitContainer7.Panel2.SuspendLayout();
             this.splitContainer7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customRepairRecordBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.repairRecordBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource1)).BeginInit();
@@ -542,8 +542,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(994, 615);
-            this.splitContainer2.SplitterDistance = 137;
+            this.splitContainer2.Size = new System.Drawing.Size(994, 606);
+            this.splitContainer2.SplitterDistance = 134;
             this.splitContainer2.TabIndex = 0;
             // 
             // tbMemo
@@ -677,7 +677,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(994, 474);
+            this.splitContainer3.Size = new System.Drawing.Size(994, 468);
             this.splitContainer3.SplitterDistance = 483;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -697,8 +697,8 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.gvRepairChoice);
-            this.splitContainer4.Size = new System.Drawing.Size(483, 474);
-            this.splitContainer4.SplitterDistance = 55;
+            this.splitContainer4.Size = new System.Drawing.Size(483, 468);
+            this.splitContainer4.SplitterDistance = 54;
             this.splitContainer4.TabIndex = 0;
             // 
             // btnChoice
@@ -741,9 +741,44 @@
             this.gvRepairChoice.Location = new System.Drawing.Point(0, 0);
             this.gvRepairChoice.Name = "gvRepairChoice";
             this.gvRepairChoice.RowTemplate.Height = 24;
-            this.gvRepairChoice.Size = new System.Drawing.Size(481, 413);
+            this.gvRepairChoice.Size = new System.Drawing.Size(481, 408);
             this.gvRepairChoice.TabIndex = 0;
             this.gvRepairChoice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvCellContentClice);
+            // 
+            // CategoryDisplayName
+            // 
+            this.CategoryDisplayName.DataPropertyName = "CategoryDisplayName";
+            this.CategoryDisplayName.HeaderText = "類別";
+            this.CategoryDisplayName.Name = "CategoryDisplayName";
+            this.CategoryDisplayName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CategoryDisplayName.Width = 80;
+            // 
+            // ItemName
+            // 
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "項目名稱";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 120;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Price.HeaderText = "價錢";
+            this.Price.Name = "Price";
+            this.Price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Price.Width = 80;
+            // 
+            // Qty
+            // 
+            this.Qty.DataPropertyName = "Qty";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Qty.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Qty.HeaderText = "數量";
+            this.Qty.Name = "Qty";
+            this.Qty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Qty.Width = 80;
             // 
             // btnAdd
             // 
@@ -774,6 +809,24 @@
             this.btnSub.UseColumnTextForButtonValue = true;
             this.btnSub.Width = 30;
             // 
+            // RepairItemId
+            // 
+            this.RepairItemId.DataPropertyName = "RepairItemId";
+            this.RepairItemId.HeaderText = "RepairItemId";
+            this.RepairItemId.Name = "RepairItemId";
+            this.RepairItemId.Visible = false;
+            // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.Visible = false;
+            // 
+            // customRepairItemBindingSource2
+            // 
+            this.customRepairItemBindingSource2.DataSource = typeof(MotoForm.Model.CustomRepairItem);
+            // 
             // splitContainer5
             // 
             this.splitContainer5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -793,8 +846,8 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.gvSaleRepairItem);
-            this.splitContainer5.Size = new System.Drawing.Size(507, 474);
-            this.splitContainer5.SplitterDistance = 53;
+            this.splitContainer5.Size = new System.Drawing.Size(507, 468);
+            this.splitContainer5.SplitterDistance = 52;
             this.splitContainer5.TabIndex = 0;
             // 
             // label22
@@ -867,185 +920,9 @@
             this.gvSaleRepairItem.ReadOnly = true;
             this.gvSaleRepairItem.RowTemplate.Height = 24;
             this.gvSaleRepairItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvSaleRepairItem.Size = new System.Drawing.Size(505, 415);
+            this.gvSaleRepairItem.Size = new System.Drawing.Size(505, 410);
             this.gvSaleRepairItem.TabIndex = 0;
             this.gvSaleRepairItem.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gvSaleRepairItem_UserDeletedRow);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.splitContainer6);
-            this.tabPage3.Location = new System.Drawing.Point(4, 31);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1000, 612);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "歷史紀錄";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.lbMotoNumber);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tabController);
-            this.splitContainer1.Size = new System.Drawing.Size(1008, 729);
-            this.splitContainer1.SplitterDistance = 78;
-            this.splitContainer1.TabIndex = 1;
-            // 
-            // lbMotoNumber
-            // 
-            this.lbMotoNumber.AutoSize = true;
-            this.lbMotoNumber.Font = new System.Drawing.Font("新細明體", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbMotoNumber.Location = new System.Drawing.Point(12, 22);
-            this.lbMotoNumber.Name = "lbMotoNumber";
-            this.lbMotoNumber.Size = new System.Drawing.Size(0, 37);
-            this.lbMotoNumber.TabIndex = 0;
-            // 
-            // splitContainer6
-            // 
-            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer6.Name = "splitContainer6";
-            // 
-            // splitContainer6.Panel1
-            // 
-            this.splitContainer6.Panel1.Controls.Add(this.gvRepairReCords);
-            // 
-            // splitContainer6.Panel2
-            // 
-            this.splitContainer6.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer6.Size = new System.Drawing.Size(1000, 612);
-            this.splitContainer6.SplitterDistance = 638;
-            this.splitContainer6.TabIndex = 0;
-            // 
-            // gvRepairReCords
-            // 
-            this.gvRepairReCords.AllowUserToAddRows = false;
-            this.gvRepairReCords.AllowUserToDeleteRows = false;
-            this.gvRepairReCords.AutoGenerateColumns = false;
-            this.gvRepairReCords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvRepairReCords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.RepairRecordId,
-            this.MotoId,
-            this.CreateDateTimeStamp,
-            this.ContainString,
-            this.DateTimeString,
-            this.LastMaintainceMileage,
-            this.Memo,
-            this.Principal,
-            this.ReceivableAmount,
-            this.ActualHarvestAmount});
-            this.gvRepairReCords.DataSource = this.customRepairRecordBindingSource;
-            this.gvRepairReCords.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvRepairReCords.Location = new System.Drawing.Point(0, 0);
-            this.gvRepairReCords.MultiSelect = false;
-            this.gvRepairReCords.Name = "gvRepairReCords";
-            this.gvRepairReCords.ReadOnly = true;
-            this.gvRepairReCords.RowTemplate.Height = 24;
-            this.gvRepairReCords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvRepairReCords.Size = new System.Drawing.Size(638, 612);
-            this.gvRepairReCords.TabIndex = 0;
-            this.gvRepairReCords.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.gvRepairReCords_RowStateChanged);
-            // 
-            // splitContainer7
-            // 
-            this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer7.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer7.Name = "splitContainer7";
-            this.splitContainer7.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer7.Panel1
-            // 
-            this.splitContainer7.Panel1.Controls.Add(this.tbRepairItemDisplay);
-            // 
-            // splitContainer7.Panel2
-            // 
-            this.splitContainer7.Panel2.Controls.Add(this.btnEditRepairItem);
-            this.splitContainer7.Size = new System.Drawing.Size(358, 612);
-            this.splitContainer7.SplitterDistance = 546;
-            this.splitContainer7.TabIndex = 0;
-            // 
-            // tbRepairItemDisplay
-            // 
-            this.tbRepairItemDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbRepairItemDisplay.Enabled = false;
-            this.tbRepairItemDisplay.Font = new System.Drawing.Font("新細明體", 12F);
-            this.tbRepairItemDisplay.Location = new System.Drawing.Point(0, 0);
-            this.tbRepairItemDisplay.Multiline = true;
-            this.tbRepairItemDisplay.Name = "tbRepairItemDisplay";
-            this.tbRepairItemDisplay.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbRepairItemDisplay.Size = new System.Drawing.Size(358, 546);
-            this.tbRepairItemDisplay.TabIndex = 0;
-            // 
-            // btnEditRepairItem
-            // 
-            this.btnEditRepairItem.Location = new System.Drawing.Point(114, 10);
-            this.btnEditRepairItem.Name = "btnEditRepairItem";
-            this.btnEditRepairItem.Size = new System.Drawing.Size(123, 37);
-            this.btnEditRepairItem.TabIndex = 28;
-            this.btnEditRepairItem.Text = "編輯內容";
-            this.btnEditRepairItem.UseVisualStyleBackColor = true;
-            this.btnEditRepairItem.Click += new System.EventHandler(this.btnEditRepairItem_Click);
-            // 
-            // CategoryDisplayName
-            // 
-            this.CategoryDisplayName.DataPropertyName = "CategoryDisplayName";
-            this.CategoryDisplayName.HeaderText = "類別";
-            this.CategoryDisplayName.Name = "CategoryDisplayName";
-            this.CategoryDisplayName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CategoryDisplayName.Width = 80;
-            // 
-            // ItemName
-            // 
-            this.ItemName.DataPropertyName = "ItemName";
-            this.ItemName.HeaderText = "項目名稱";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.Width = 120;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Price.HeaderText = "價錢";
-            this.Price.Name = "Price";
-            this.Price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Price.Width = 80;
-            // 
-            // Qty
-            // 
-            this.Qty.DataPropertyName = "Qty";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Qty.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Qty.HeaderText = "數量";
-            this.Qty.Name = "Qty";
-            this.Qty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Qty.Width = 80;
-            // 
-            // RepairItemId
-            // 
-            this.RepairItemId.DataPropertyName = "RepairItemId";
-            this.RepairItemId.HeaderText = "RepairItemId";
-            this.RepairItemId.Name = "RepairItemId";
-            this.RepairItemId.Visible = false;
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.Visible = false;
-            // 
-            // customRepairItemBindingSource2
-            // 
-            this.customRepairItemBindingSource2.DataSource = typeof(MotoForm.Model.CustomRepairItem);
             // 
             // SaleRepairItemId
             // 
@@ -1097,6 +974,62 @@
             // customRepairItemBindingSource4
             // 
             this.customRepairItemBindingSource4.DataSource = typeof(MotoForm.Model.CustomRepairItem);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.splitContainer6);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1000, 621);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "歷史紀錄";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer6
+            // 
+            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer6.Name = "splitContainer6";
+            // 
+            // splitContainer6.Panel1
+            // 
+            this.splitContainer6.Panel1.Controls.Add(this.gvRepairReCords);
+            // 
+            // splitContainer6.Panel2
+            // 
+            this.splitContainer6.Panel2.Controls.Add(this.splitContainer7);
+            this.splitContainer6.Size = new System.Drawing.Size(1000, 621);
+            this.splitContainer6.SplitterDistance = 638;
+            this.splitContainer6.TabIndex = 0;
+            // 
+            // gvRepairReCords
+            // 
+            this.gvRepairReCords.AllowUserToAddRows = false;
+            this.gvRepairReCords.AllowUserToDeleteRows = false;
+            this.gvRepairReCords.AutoGenerateColumns = false;
+            this.gvRepairReCords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvRepairReCords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.RepairRecordId,
+            this.MotoId,
+            this.CreateDateTimeStamp,
+            this.ContainString,
+            this.DateTimeString,
+            this.LastMaintainceMileage,
+            this.Memo,
+            this.Principal,
+            this.ReceivableAmount,
+            this.ActualHarvestAmount});
+            this.gvRepairReCords.DataSource = this.customRepairRecordBindingSource;
+            this.gvRepairReCords.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvRepairReCords.Location = new System.Drawing.Point(0, 0);
+            this.gvRepairReCords.MultiSelect = false;
+            this.gvRepairReCords.Name = "gvRepairReCords";
+            this.gvRepairReCords.ReadOnly = true;
+            this.gvRepairReCords.RowTemplate.Height = 24;
+            this.gvRepairReCords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gvRepairReCords.Size = new System.Drawing.Size(638, 621);
+            this.gvRepairReCords.TabIndex = 0;
+            this.gvRepairReCords.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.gvRepairReCords_RowStateChanged);
             // 
             // RepairRecordId
             // 
@@ -1183,6 +1116,73 @@
             // 
             this.customRepairRecordBindingSource.DataSource = typeof(MotoForm.Model.CustomRepairRecord);
             // 
+            // splitContainer7
+            // 
+            this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer7.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer7.Name = "splitContainer7";
+            this.splitContainer7.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer7.Panel1
+            // 
+            this.splitContainer7.Panel1.Controls.Add(this.tbRepairItemDisplay);
+            // 
+            // splitContainer7.Panel2
+            // 
+            this.splitContainer7.Panel2.Controls.Add(this.btnEditRepairItem);
+            this.splitContainer7.Size = new System.Drawing.Size(358, 621);
+            this.splitContainer7.SplitterDistance = 554;
+            this.splitContainer7.TabIndex = 0;
+            // 
+            // tbRepairItemDisplay
+            // 
+            this.tbRepairItemDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbRepairItemDisplay.Enabled = false;
+            this.tbRepairItemDisplay.Font = new System.Drawing.Font("新細明體", 12F);
+            this.tbRepairItemDisplay.Location = new System.Drawing.Point(0, 0);
+            this.tbRepairItemDisplay.Multiline = true;
+            this.tbRepairItemDisplay.Name = "tbRepairItemDisplay";
+            this.tbRepairItemDisplay.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbRepairItemDisplay.Size = new System.Drawing.Size(358, 554);
+            this.tbRepairItemDisplay.TabIndex = 0;
+            // 
+            // btnEditRepairItem
+            // 
+            this.btnEditRepairItem.Location = new System.Drawing.Point(114, 10);
+            this.btnEditRepairItem.Name = "btnEditRepairItem";
+            this.btnEditRepairItem.Size = new System.Drawing.Size(123, 37);
+            this.btnEditRepairItem.TabIndex = 28;
+            this.btnEditRepairItem.Text = "編輯內容";
+            this.btnEditRepairItem.UseVisualStyleBackColor = true;
+            this.btnEditRepairItem.Click += new System.EventHandler(this.btnEditRepairItem_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.lbMotoNumber);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tabController);
+            this.splitContainer1.Size = new System.Drawing.Size(1008, 729);
+            this.splitContainer1.SplitterDistance = 78;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // lbMotoNumber
+            // 
+            this.lbMotoNumber.AutoSize = true;
+            this.lbMotoNumber.Font = new System.Drawing.Font("新細明體", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbMotoNumber.Location = new System.Drawing.Point(12, 22);
+            this.lbMotoNumber.Name = "lbMotoNumber";
+            this.lbMotoNumber.Size = new System.Drawing.Size(0, 37);
+            this.lbMotoNumber.TabIndex = 0;
+            // 
             // repairRecordBindingSource
             // 
             this.repairRecordBindingSource.DataSource = typeof(MotoForm.Domain.Model.RepairRecord);
@@ -1227,31 +1227,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvRepairChoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource2)).EndInit();
             this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel1.PerformLayout();
             this.splitContainer5.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvSaleRepairItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource4)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.splitContainer6.Panel1.ResumeLayout(false);
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvRepairReCords)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customRepairRecordBindingSource)).EndInit();
             this.splitContainer7.Panel1.ResumeLayout(false);
             this.splitContainer7.Panel1.PerformLayout();
             this.splitContainer7.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
             this.splitContainer7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customRepairRecordBindingSource)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.repairRecordBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customRepairItemBindingSource1)).EndInit();
