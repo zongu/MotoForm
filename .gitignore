@@ -14,3 +14,9 @@
 /MotoForm.Persistent.Tests/bin/Debug
 /MotoForm.Persistent.Tests/obj/Debug
 /packages
+/MotoForm/bin/Release
+/MotoForm/obj/Release
+/MotoForm.Domain/bin/Release
+/MotoForm.Domain/obj/Release
+/MotoForm.Persistent/bin/Release
+/MotoForm.Persistent/obj/Release
