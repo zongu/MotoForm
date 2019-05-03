@@ -28,7 +28,7 @@ namespace MotoForm.Persistent
                 string sqlStr = @"SELECT COUNT(1) FROM RepairRecord WHERE CreateDateTimeStamp BETWEEN @StartDateTimeStamp AND @EndDateTimeStamp";
                 using (var cn = new SQLiteConnection(this.connectionString))
                 {
-                    var result = cn.QueryFirstOrDefault<int>(
+                    var result = cn.Query<int>(
                         sqlStr,
                         new
                         {
@@ -36,7 +36,7 @@ namespace MotoForm.Persistent
                             EndDateTimeStamp = endDateTimeStamp
                         });
 
-                    return Tuple.Create<Exception, int>(null, result);
+                    return Tuple.Create<Exception, int>(null, result.FirstOrDefault());
                 }
             }
             catch (Exception ex)

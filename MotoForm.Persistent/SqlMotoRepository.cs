@@ -49,14 +49,14 @@ namespace MotoForm.Persistent
                 string sqlStr = @"SELECT * FROM Moto WHERE MotoNumber = @MotoNumber AND Enable = 1";
                 using (var cn = new SQLiteConnection(this.connectionString))
                 {
-                    var result = cn.QueryFirstOrDefault<Moto>(
+                    var result = cn.Query<Moto>(
                         sqlStr,
                         new
                         {
                             MotoNumber = motoNumber
                         });
 
-                    return Tuple.Create<Exception, Moto>(null, result);
+                    return Tuple.Create<Exception, Moto>(null, result.FirstOrDefault());
                 }
             }
             catch (Exception ex)
